@@ -3,7 +3,7 @@ const express=require('express')
 const Joi=require('@hapi/joi')
 const morgan=require('morgan')
 const config=require('config')
-
+// let errs=require('./middleware/errors')
 const db=require('debug')('app:startup')
 const message=require('debug')('app:message')
 const port=process.env.PORT||8988;
@@ -18,11 +18,15 @@ if(app.get('env')==='development'){
 db('akshay maity')
 
 
+// console.log(app.get('env'))
+
+
 app.use('/customers',require('./routes/customers'))
 
 app.use('/genro',require('./routes/genres'))
 app.use('/movies',require('./routes/movies'))
 app.use('/rental',require('./routes/rental'))
+// app.use(errs)
 // console.log("host",config.get('name'))
 // console.log("host",config.get('mail.host'))
 // console.log("host",config.get('mail.password'))

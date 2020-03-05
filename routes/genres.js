@@ -3,9 +3,16 @@ const express = require('express');
 const _=require('lodash')
 const router = express.Router();
 
-router.get('/', async (req, res) => {
-  const genres = await Genre.find().sort('name');
-  res.send(genres);
+router.get('/', async (req, res,next) => {
+  try {
+    const genres = await Genre.find().sort('name').limit(40).skip(2);
+    res.send(genres);
+  } catch (error) {
+   
+    res.status(500).send(error)
+  }
+ 
+
 });
 
 router.post('/postgenro', async (req, res) => {
@@ -22,6 +29,7 @@ router.post('/postgenro', async (req, res) => {
     // {
       res.status(500).send(error)
     // }
+    // next(errors)
   }
  
 });
