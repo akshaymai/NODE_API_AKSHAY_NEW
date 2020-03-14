@@ -1,11 +1,10 @@
 const mongoose=require('mongoose')
+const winston=require('winston')
 mongoose.Promise=global.Promise;
 mongoose.connect('mongodb://localhost:27017/MoshApi',
 {useCreateIndex:true,useUnifiedTopology: true , useNewUrlParser: true})
 .then(()=>{
-    console.log('conneted sucessfully')
-}).catch(()=>{
-    console.log('not conneted')
-})
+    winston.info('conneted sucessfully')
+}) 
 
 module.exports={mongoose}

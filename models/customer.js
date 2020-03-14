@@ -10,7 +10,6 @@ const CustomerSchema=new Schema({
   },
   isGold: {
     type: Boolean,
-    // required:true
     default: false
   },
 
@@ -28,7 +27,6 @@ function validateCustomer(customer) {
     phone: Joi.string().regex(/^([0]|([\+][9][1]))?([6-9][0-9]{9})$/).required(),
      isGold: Joi.boolean()
   })
-
   return schema.validate(customer);
 }
 
